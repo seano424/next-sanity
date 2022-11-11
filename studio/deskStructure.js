@@ -19,4 +19,4 @@ export const getDefaultDocumentNode = () => {
 export default () =>
   S.list()
     .title('Content')
-    .items([S.documentTypeListItem('article')])
+    .items([S.documentTypeListItem('article'), S.documentTypeListItem('page')])

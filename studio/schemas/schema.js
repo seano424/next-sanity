@@ -6,8 +6,26 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 import article from './article'
 
+import callToAction from './callToAction'
+import form from './form'
+import hero from './hero'
+import imageGallery from './imageGallery'
+import textWithIllustration from './textWithIllustration'
+import video from './video'
+
+import page from './page'
+
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   name: 'default',
-  types: schemaTypes.concat([article]),
+  types: schemaTypes.concat([
+    page,
+    article,
+    callToAction,
+    form,
+    hero,
+    imageGallery,
+    textWithIllustration,
+    video,
+  ]),
 })
