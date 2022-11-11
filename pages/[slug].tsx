@@ -94,7 +94,6 @@ export default function Page({ data, preview }: PageProps) {
 
   // Client-side uses the same query, so we may need to filter it down again
   const page = filterDataToSingleItem(previewData, preview)
-  console.log(page)
 
   return (
     <div>
