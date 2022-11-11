@@ -2,6 +2,7 @@ import { groq } from 'next-sanity'
 import { usePreviewSubscription } from '../../lib/sanity'
 import { getClient } from '../../lib/sanity.server'
 import { GetStaticProps, GetStaticPaths } from 'next/types'
+import { ArticleData } from '../../lib/interfaces'
 import Link from 'next/link'
 
 /**
@@ -59,20 +60,8 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-interface ArticleData {
-  page: {
-    _createdAt: string
-    _id: string
-    _rev: string
-    _type: string
-    _updatedAt: string
-    content: string
-    slug: {
-      _type: string
-      current: string
-    }
-    title: string
-  }
+export interface BlogData {
+  page: ArticleData
   query: string
   queryParams: {
     slug: string
@@ -80,11 +69,11 @@ interface ArticleData {
 }
 
 interface PageProps {
-  data: ArticleData
+  data: BlogData
   preview: boolean
 }
 
-export default function Page({ data, preview }: PageProps) {
+export default function Blog({ data, preview }: PageProps) {
   const { data: previewData } = usePreviewSubscription(data?.query, {
     params: data?.queryParams ?? {},
     // The hook will return this on first render
