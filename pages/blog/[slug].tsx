@@ -1,6 +1,6 @@
 import { groq } from 'next-sanity'
-import { usePreviewSubscription } from '../lib/sanity'
-import { getClient } from '../lib/sanity.server'
+import { usePreviewSubscription } from '../../lib/sanity'
+import { getClient } from '../../lib/sanity.server'
 import { GetStaticProps, GetStaticPaths } from 'next/types'
 import Link from 'next/link'
 
@@ -25,11 +25,12 @@ function filterDataToSingleItem(data: {}, preview: boolean) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allSlugsQuery = groq`*[defined(slug.current)][].slug.current`
+  // *[defined(slug.current)][].slug.current
+  const allSlugsQuery = groq`*[_type == "article"][].slug.current`
   const pages = await getClient().fetch(allSlugsQuery)
 
   return {
-    paths: pages.map((slug: string) => `/${slug}`),
+    paths: pages.map((slug: string) => `/blog/${slug}`),
     fallback: true,
   }
 }

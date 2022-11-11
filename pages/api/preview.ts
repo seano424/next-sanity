@@ -45,5 +45,5 @@ export default async function preview(
 
   // Redirect to the path from the fetched article
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  return redirectToPreview(res, `/${article.slug}`)
+  return redirectToPreview(res, `/blog/${article.slug}`)
 }
