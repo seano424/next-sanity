@@ -11,7 +11,7 @@ export default function Home({ articles }: HomeProps) {
 
   return (
     <div>
-      <nav className="">
+      <nav className="text-xl">
         {articles &&
           articles.map((a, index) => (
             <Link href={`/blog/${a.slug.current}`} key={index}>
