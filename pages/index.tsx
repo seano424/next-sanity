@@ -7,19 +7,21 @@ interface HomeProps {
 }
 
 export default function Home({ articles }: HomeProps) {
-  console.log(articles)
-
   return (
-    <div>
-      <nav className="text-xl">
+    <>
+      <nav className="text-xl flex items-center gap-10 p-5">
         {articles &&
           articles.map((a, index) => (
-            <Link href={`/blog/${a.slug.current}`} key={index}>
+            <Link
+              className="underline underline-offset-4 hover:opacity-50 transition-opacity duration-200 ease-linear"
+              href={`/blog/${a.slug.current}`}
+              key={index}
+            >
               {a.title}
             </Link>
           ))}
       </nav>
-    </div>
+    </>
   )
 }
 
