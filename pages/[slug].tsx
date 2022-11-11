@@ -3,7 +3,7 @@ import { usePreviewSubscription } from '../lib/sanity'
 import { filterDataToSingleItem } from '../lib/helpers'
 import { getClient } from '../lib/sanity.server'
 import { GetStaticProps, GetStaticPaths } from 'next/types'
-import TextWithIllustration from '../components/textWithIllustration'
+import TextWithIllustration from '../components/TextWithIllustration'
 import Hero from '../components/Hero'
 
 export const getStaticPaths: GetStaticPaths = async () => {

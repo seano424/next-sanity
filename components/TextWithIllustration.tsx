@@ -1,18 +1,6 @@
 import React from 'react'
+import { TextWithIllustrationData } from '../lib/interfaces'
 
-interface TextWithIllustrationProps {
-  _key: string
-  _type: string
-  heading: string
-  image: {
-    _type: string
-    asset: {
-      _ref: string
-      _type: string
-    }
-  }
-}
-
-export default function TextWithIllustration(props: TextWithIllustrationProps) {
+export default function TextWithIllustration(props: TextWithIllustrationData) {
   return <div>TextWithIllustration</div>
 }

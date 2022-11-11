@@ -1,22 +1,9 @@
 import React from 'react'
 import { urlFor } from '../lib/sanity'
+import { HeroData } from '../lib/interfaces'
 import Image from 'next/image'
 
-interface HeroProps {
-  heading?: string
-  image?: {
-    _type: string
-    asset: {
-      _ref: string
-      _type: string
-    }
-  }
-  _type: string
-  tagline?: string
-  _key?: string
-}
-
-export default function Hero(props: HeroProps) {
+export default function Hero(props: HeroData) {
   return (
     <div className="relative">
       <Image
