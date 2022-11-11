@@ -1,14 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { articleBySlugQuery } from '../../lib/queries'
+import { articleBySlugQuery, pageBySlugQuery } from '../../lib/queries'
 import { previewClient } from '../../lib/sanity.server'
 
 function redirectToPreview(res: NextApiResponse, Location: any) {
   // Enable preview mode by setting the cookies
   res.setPreviewData({})
 
-  console.log('Location:', Location);
-  
+  console.log('Location:', Location)
 
   // Redirect to a preview capable route
   res.writeHead(307, { Location })
@@ -38,12 +37,20 @@ export default async function preview(
   // Check if the article with the given `slug` exists
   const article = await previewClient.fetch(articleBySlugQuery, { slug })
 
+  const page = await previewClient.fetch(pageBySlugQuery, { slug })
+
   // If the slug doesn't exist prevent preview mode from being enabled
-  if (!article) {
+  if (!article && !page) {
     return res.status(401).json({ message: 'Invalid slug' })
   }
 
   // Redirect to the path from the fetched article
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  return redirectToPreview(res, `/blog/${article.slug}`)
+  if (article) {
+    return redirectToPreview(res, `/blog/${article.slug}`)
+  }
+
+  if (page) {
+    return redirectToPreview(res, `/${page.slug}`)
+  }
 }
