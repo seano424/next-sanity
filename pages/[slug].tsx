@@ -2,6 +2,7 @@ import { groq } from 'next-sanity'
 import { usePreviewSubscription } from '../lib/sanity'
 import { getClient } from '../lib/sanity.server'
 import { GetStaticProps, GetStaticPaths } from 'next/types'
+import Link from 'next/link'
 
 /**
  * Helper function to return the correct version of the document
@@ -97,6 +98,7 @@ export default function Page({ data, preview }: PageProps) {
 
   return (
     <div>
+      {preview && <Link href="/api/exit-preview">Preview Mode Activated!</Link>}
       {page?.title && <h1>{page.title}</h1>}
       {page?.content && <p>{page.content}</p>}
     </div>

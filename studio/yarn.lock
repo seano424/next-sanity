@@ -1707,6 +1707,11 @@
     lodash "^4.17.21"
     slate "0.81.1"
 
+"@sanity/production-preview@^2.33.2":
+  version "2.33.2"
+  resolved "https://registry.npmjs.org/@sanity/production-preview/-/production-preview-2.33.2.tgz#b8d03274fb3a65d359f9cba9351db0b980e18921"
+  integrity sha512-Tv8YAuDjITneydleGFpX06dWa3xHJeczZMI8XQvb4s2nmPoYnNurFi9XCwNT/EGKYR1jrILuI9wFzL92S5K9oQ==
+
 "@sanity/react-hooks@2.35.1":
   version "2.35.1"
   resolved "https://registry.npmjs.org/@sanity/react-hooks/-/react-hooks-2.35.1.tgz#24c6338567b5e3fb0d327c0403b5aeaf1ab230a8"
