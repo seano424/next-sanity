@@ -1,5 +1,6 @@
 import { getArticles } from '../lib/queries'
 import { ArticleData } from '../lib/interfaces'
+import Link from 'next/link'
 
 interface HomeProps {
   articles: ArticleData[]
@@ -8,7 +9,18 @@ interface HomeProps {
 export default function Home({ articles }: HomeProps) {
   console.log(articles)
 
-  return <div>Home</div>
+  return (
+    <div>
+      <nav className="">
+        {articles &&
+          articles.map((a, index) => (
+            <Link href={`/blog/${a.slug.current}`} key={index}>
+              {a.title}
+            </Link>
+          ))}
+      </nav>
+    </div>
+  )
 }
 
 export async function getStaticProps({ preview = false }) {
