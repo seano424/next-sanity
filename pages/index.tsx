@@ -45,11 +45,11 @@ export default function Home({ articles, pages }: HomeProps) {
         </ul>
       </nav>
       <div className="flex justify-center mt-20">
-        <div className="bg-blue-300 rounded h-80 aspect-square relative">
-          <Ribbon position="top-right" color="green" size="small" />
-          <Ribbon position="top-left" color="purple" size="medium" />
-          <Ribbon position="bottom-left" color="cyan" size="small" />
-          <Ribbon position="bottom-right" color="amber" size="small" />
+        <div className="bg-teal-100 rounded h-80 aspect-square relative">
+          <Ribbon>Woohoo</Ribbon>
+          <Ribbon position="top-left" color="purple">
+            Woohoo
+          </Ribbon>
         </div>
       </div>
     </>

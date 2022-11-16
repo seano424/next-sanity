@@ -1,15 +1,23 @@
+import { ReactNode } from "react"
+
 export type RibbonProps = {
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
   size?: 'small' | 'medium' | 'large'
   color?: 'amber' | 'green' | 'purple' | 'cyan'
+  children?: ReactNode
 }
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Styles Lookup
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 export default function Ribbon(props: RibbonProps) {
-  const { color = 'cyan', size = 'large', position = 'top-right' } = props
+  const {
+    color = 'cyan',
+    size = 'large',
+    position = 'top-right',
+    children,
+  } = props
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Styles Lookup
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   const sizeClasses: Record<typeof size, string> = {
     small: 'w-32',
@@ -91,7 +99,7 @@ export default function Ribbon(props: RibbonProps) {
         href="#"
         className={`text-sm font-semibold tracking-wider py-2 absolute text-center ${positionClasses[position].ribbon} w-square-diagonal shadow-sm ${colorClasses[color].ribbon}`}
       >
-        Wooohooo
+        {children}
       </a>
     </div>
   )
