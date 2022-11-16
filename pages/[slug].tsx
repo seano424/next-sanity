@@ -86,13 +86,15 @@ export default function Page({ data, preview }: PageProps) {
         return <Hero {...params} key={params._key} />
       case 'textWithIllustration':
         return <TextWithIllustration {...params} key={params._key} />
+      case 'callToAction':
+        return <div>hello world</div>
       default:
         return <></>
     }
   }
 
   return (
-    <div>
+    <div className='container'>
       {page && (
         <div>
           <p>{page.title}</p>
