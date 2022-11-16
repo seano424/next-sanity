@@ -6,7 +6,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        'square-diagonal': (Math.sqrt(2) * 100).toFixed(2) + '%',
+      },
+    },
   },
   plugins: [],
 }
