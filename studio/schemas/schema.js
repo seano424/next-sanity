@@ -12,6 +12,7 @@ import hero from './hero'
 import imageGallery from './imageGallery'
 import textWithIllustration from './textWithIllustration'
 import video from './video'
+import ribbon from './ribbon'
 
 import page from './page'
 
@@ -27,5 +28,6 @@ export default createSchema({
     imageGallery,
     textWithIllustration,
     video,
+    ribbon
   ]),
 })
