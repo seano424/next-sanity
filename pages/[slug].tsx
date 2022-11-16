@@ -1,13 +1,13 @@
 import { groq } from 'next-sanity'
+import { getAllPageSlugs, getPage } from 'lib/queries'
 import { usePreviewSubscription } from '../lib/sanity'
 import { filterDataToSingleItem } from '../lib/helpers'
-import { getClient } from '../lib/sanity.server'
 import { GetStaticProps, GetStaticPaths } from 'next/types'
 import TextWithIllustration from '../components/TextWithIllustration'
 import Hero from '../components/Hero'
 import CallToAction from '../components/CallToAction'
 
-export type MyProps = {
+export type PageProps = {
   data: {
     page: {
       _createdAt: string
@@ -30,14 +30,22 @@ export type MyProps = {
   preview: boolean
 }
 
-export default function Page({ data, preview }: MyProps) {
+/**
+ * The `usePreviewSubscription` takes care of updating
+ * the preview content on the client-side
+ */
+export default function Page({ data, preview }: PageProps) {
   const { data: previewData } = usePreviewSubscription(data?.query, {
     params: data?.queryParams ?? {},
+    // The hook will return this on first render
+    // This is why it's important to fetch *draft* content server-side!
     initialData: data?.page,
+    // The passed-down preview context determines whether this function does anything
     enabled: preview,
   })
 
   const page = filterDataToSingleItem(previewData, preview)
+  console.log(page)
 
   const componentsMap: any = {
     hero: Hero,
@@ -46,7 +54,7 @@ export default function Page({ data, preview }: MyProps) {
   }
 
   return (
-    <div className="container">
+    <main className="container">
       {page && (
         <div>
           <p>{page.title}</p>
@@ -63,13 +71,12 @@ export default function Page({ data, preview }: MyProps) {
           )}
         </div>
       )}
-    </div>
+    </main>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allSlugsQuery = groq`*[_type == "page"][].slug.current`
-  const pages = await getClient().fetch(allSlugsQuery)
+  const pages = await getAllPageSlugs()
 
   return {
     paths: pages.map((slug: string) => `/${slug}`),
@@ -83,7 +90,7 @@ export const getStaticProps: GetStaticProps = async ({
 }) => {
   const query = groq`*[_type == "page" && slug.current == $slug]`
   const queryParams = { slug: params?.slug }
-  const data = await getClient(preview).fetch(query, queryParams)
+  const data = await getPage(params, preview)
 
   if (!data) return { notFound: true }
 
